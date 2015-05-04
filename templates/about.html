@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>E-commerce</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap-theme.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet">
+	<style>
+	#banner{
+	height: 200px;
+	width: 100%;
+    background: url(static/img/banner.png);
+	background-size: 100% 100%;
+	background-repeat:no-repeat;
+	margin-bottom: 15px;
+	}
+	</style>
+	{% include 'navbar.html' %}
+  </head>
+
+  <body>
+	
+    <div class="jumbotron container center">
+      <div class="container">
+        <h1>Lorem ipsum</h1>
+        <p>{% include 'lorem.html' %}</p>
+      </div>
+    </div>
+  
+  </body>
+</html>
