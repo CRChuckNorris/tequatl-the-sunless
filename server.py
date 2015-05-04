@@ -1,5 +1,4 @@
 import os
-import foursquare
 from datetime import datetime
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.login import LoginManager
@@ -9,7 +8,6 @@ from flask import jsonify
 from flask import request
 from flask import render_template
 from flask import Flask,session, request, flash, url_for, redirect, render_template, abort ,g
-from postcodes import PostCoder
 from flask.ext.login import UserMixin
 
 app = Flask(__name__)

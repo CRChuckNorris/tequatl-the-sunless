@@ -1,1 +1,1 @@
-web: gunicorn fsheroku:app
+web: gunicorn server:app
