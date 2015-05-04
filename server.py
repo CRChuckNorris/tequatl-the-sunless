@@ -9,9 +9,13 @@ from flask import request
 from flask import render_template
 from flask import Flask,session, request, flash, url_for, redirect, render_template, abort ,g
 from flask.ext.login import UserMixin
+import sys
+import logging
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 db = SQLAlchemy(app)
 db.create_all()
 login_manager = LoginManager()
