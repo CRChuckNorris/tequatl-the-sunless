@@ -72,6 +72,10 @@ def pay():
 @app.route('/about')
 def about():
     return render_template('about.html')
+	
+@app.route('/games', methods=['GET','POST'])
+def games():
+    return render_template('games.html')
     
 @app.before_request
 def before_request():
