@@ -95,7 +95,7 @@ def add_to_cart():
     tran = Transaction(name, g.user.username)
     db.session.add(tran)
     db.session.commit()
-    return redirect(url_for('games'))
+    return redirect(url_for('checkout'))
 	
 @app.route('/rfc', methods=['POST'])
 def remove_from_cart():
@@ -108,6 +108,26 @@ def remove_from_cart():
 @app.route('/success')
 def success():
     return render_template('success.html')
+	
+@app.route('/xbox')
+def xbox():
+    prods = Product.query.filter_by(console='Xbox One')
+    return render_template('console.html', games=prods)
+	
+@app.route('/ps')
+def ps():
+    prods = Product.query.filter_by(console='PS4')
+    return render_template('console.html', games=prods)
+	
+@app.route('/pc')
+def pc():
+    prods = Product.query.filter_by(console='PC')
+    return render_template('console.html', games=prods)
+	
+@app.route('/wii')
+def wii():
+    prods = Product.query.filter_by(console='Wii U')
+    return render_template('console.html', games=prods)
 	
 	
 class User(db.Model, UserMixin):

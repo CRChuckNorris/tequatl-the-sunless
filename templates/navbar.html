@@ -23,17 +23,9 @@
 		    <li><a href="{{ url_for('login') }}">Login</a></li>
 			<li><a href="{{ url_for('register') }}">Register</a></li>
 		  {% else %}
+			<li><a>Hey {{ g.user.username }}! Thanks for signing up!</a></li>
 		    <li><a href="{{ url_for('checkout') }}">Checkout</a></li>
-		    <li class="dropdown">
-		      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Account <span class="caret"></span></a>
-		      <ul class="dropdown-menu" role="menu">
-			    <li><a href="#">Action</a></li>
-			    <li><a href="#">Another action</a></li>
-			    <li><a href="#">Something else here</a></li>
-			    <li class="divider"></li>
-			    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-		      </ul>
-		    </li>
+			<li><a href="{{ url_for('logout') }}">Logout</a></li>
 		  {% endif %}
 	      </ul>
 	    </div><!-- /.navbar-collapse -->

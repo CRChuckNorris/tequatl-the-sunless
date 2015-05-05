@@ -43,27 +43,25 @@
 				<div class="carousel-caption">
 				  <h1 style="text-shadow: 0 0 3px #000000, 0 0 5px #000000;">Looking to buy great games? You've come to the right place</h1>
 				  <p style="text-shadow:  0 0 3px #000000, 0 0 5px #000000; color:white;">TTS-Games has the newest games, at the lowest prices. All you have to do is sign up and get downloading.</p>
-				  <p><a class="btn btn-lg btn-primary" href="{{ url_for('register') }}" role="button">Register</a></p>
+				  <p><a class="btn btn-lg btn-primary" href="{{ url_for('register') }}" role="button">Register now</a></p>
 				</div>
 			  </div>
 			</div>
 			<div class="item">
-			  <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+			  <img class="second-slide" src="{{ url_for('static', filename='img/blops.jpg') }}" alt="Second slide">
 			  <div class="container">
 				<div class="carousel-caption">
-				  <h1>Another example headline.</h1>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				  <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+				  <h1 style="text-shadow: 0 0 3px #000000, 0 0 5px #000000;">Coming Soon!</h1>
+				  <p style="text-shadow:  0 0 3px #000000, 0 0 5px #000000; color:white;">The best call of duty game ever!</p>
 				</div>
 			  </div>
 			</div>
 			<div class="item">
-			  <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+			  <img class="third-slide" src="{{ url_for('static', filename='img/games.jpeg') }}" alt="Third slide">
 			  <div class="container">
 				<div class="carousel-caption">
-				  <h1>One more for good measure.</h1>
-				  <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-				  <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+				  <h1>Check out our great games!</h1>
+				  <p><a class="btn btn-lg btn-primary" href="/games" role="button">Browse games</a></p>
 				</div>
 			  </div>
 			</div>

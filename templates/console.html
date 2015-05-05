@@ -23,48 +23,33 @@
   </head>
 
   <body>
-	{% include 'navbar.html' %}
+  {% include 'navbar.html' %}
     <div class="container-fluid">
 	  <div class="row">
 		{% include 'sidenav.html' %}
-  
-	  <div class = "col-sm-8 col-md-8 col-lg-10">
-	  
-	   <div class="jumbotron">
+		<div class="col-sm-8 col-md-8 col-lg-10" >
 
 
-		{% for item in cart %}
-		{% if item.user_id == g.user.username %}
+				{% for game in games %}
 				{% if loop.first %}<div class="row">{% endif %}
 				{% if loop.index == 4 %} <div class="row "> {% endif %}
 				<div class="col-sm-8 col-md-8 col-lg-2 col-lg-offset-1">
 			
 				
-				  <h2>{{ item.product }}</h2>
+				  <h2>{{game.name}}</h2>
 				  
-				  <img src="static/img/{{item.product}}.png" style="padding-bottom:10px;" height="100%" width="100%"></img>
-				  
-				  <p> {{ item.price }} </p>
-				  
+				  <img src="static/img/{{game.name}}.png" style="padding-bottom:10px;" height="100%" width="100%"></img>
+				  <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+				  <form action="{{ url_for('add_to_cart') }}" method=post><input type="hidden"" value="{{game.name}}" name="game_to_add"><input type="submit" value="Add to cart" class="btn btn-default"></a></form>
 				</div>
 				{% if loop.index is divisibleby 4 %}</div><div class="row">{% endif %}
 				{% if loop.last %}</div>{% endif %}
-				{% endif %}
 				{% endfor %}
-				
-		<div class="container-small center">
-		
-		<h1>Total price to pay: £{{ total }}</h1>
-		
-		<p><a class="btn btn-lg btn-default" href="{{ url_for('pay') }}" role="button">Pay now</a>  or  <a class="btn btn-lg btn-default" href="{{ url_for('games') }}" role="button">Return to games</a></p>
-		
-		</div>
-		
+
+			  </div>
+
 		</div>
 	  </div>
-	 </div>
 	</div>
-  
   </body>
-  
 </html>
