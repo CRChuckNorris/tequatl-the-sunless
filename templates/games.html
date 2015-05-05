@@ -29,7 +29,7 @@
 		{% include 'sidenav.html' %}
 		<div class="col-sm-8 col-md-8 col-lg-10" >
 
-				{% if g.user.is_authenticated() %}
+
 				{% for game in games %}
 				{% if loop.first %}<div class="row">{% endif %}
 				{% if loop.index == 4 %} <div class="row "> {% endif %}
@@ -45,7 +45,7 @@
 				{% if loop.index is divisibleby 4 %}</div><div class="row">{% endif %}
 				{% if loop.last %}</div>{% endif %}
 				{% endfor %}
-				{% endif %}
+
 			  </div>
 
 		</div>
