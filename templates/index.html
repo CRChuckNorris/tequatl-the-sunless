@@ -11,12 +11,12 @@
 	<link href="{{ url_for('static', filename='css/carousel.css') }}" rel="stylesheet">
 	<style>
 	#banner{
-	height: 200px;
-	width: 100%;
-    background: url(static/img/banner.png);
-	background-size: 100% 100%;
-	background-repeat:no-repeat;
-	margin-bottom: 15px;
+		height: 200px;
+		width: 100%;
+		background: url(static/img/banner.png);
+		background-size: 100% 100%;
+		background-repeat:no-repeat;
+		margin-bottom: 15px;
 	}
 	</style>
 	{% include 'navbar.html' %}
@@ -34,28 +34,19 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="#">Navigation</a>
+			  <p class="navbar-brand">Navigation</p>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-			  <ul class="nav nav-sidebar">
+			  <ul class="nav nav-sidebar" role="menu">
 				</br>
 				</br>
-				<li><a href="#">Overview</a></li>
-				<li><a href="#">Reports</a></li>
-				<li><a href="#">Analytics</a></li>
-				<li><a href="#">Export</a></li>
-			  </ul>
-			  <ul class="nav nav-sidebar">
-				<li><a href="">Nav item</a></li>
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
-				<li><a href="">More navigation</a></li>
-			  </ul>
-			  <ul class="nav nav-sidebar">
-				<li><a href="">Nav item again</a></li>
-				<li><a href="">One more nav</a></li>
-				<li><a href="">Another nav item</a></li>
+				</br>
+				<li><a href="#">All games</a></li>
+				</br>
+				<li><a href="#">Xbox One</a></li>
+				<li><a href="#">PS4</a></li>
+				<li><a href="#">PC</a></li>
+				<li><a href="#">Wii U</a></li>
 			  </ul>
 			 </div>
 		</div>
@@ -69,12 +60,12 @@
 		  </ol>
 		  <div class="carousel-inner" role="listbox">
 			<div class="item active">
-			  <img class="first-slide" src="{{ url_for('static', filename='img/quack.jpg') }}" alt="First slide">
+			  <img class="first-slide" src="{{ url_for('static', filename='img/splash.png') }}" alt="First slide">
 			  <div class="container">
 				<div class="carousel-caption">
-				  <h1 style="text-shadow: 0 0 3px #000000, 0 0 5px #000000;">Example headline.</h1>
-				  <p style="text-shadow:  0 0 3px #000000, 0 0 5px #000000; color:white;">Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-				  <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+				  <h1 style="text-shadow: 0 0 3px #000000, 0 0 5px #000000;">Looking to buy Games? You've come to the right place</h1>
+				  <p style="text-shadow:  0 0 3px #000000, 0 0 5px #000000; color:white;">TTS-Games has the newest games, at the lowest prices. All you have to do is sign up and get downloading.</p>
+				  <p><a class="btn btn-lg btn-primary" href="{{ url_for('register') }}" role="button">Register</a></p>
 				</div>
 			  </div>
 			</div>
@@ -109,7 +100,28 @@
 		  </a>
 		</div><!-- /.carousel -->
 	  </div>
-  </div>
-  </div>
+	  </div>
+  	  <div class="row ">
+		<div class="col-sm-8 col-md-8 col-lg-2">
+        </div>
+		{% if g.user.is_authenticated() %}
+        <div class="col-sm-8 col-md-8 col-lg-2 col-lg-offset-1">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+        <div class="col-sm-8 col-md-8 col-lg-2 col-lg-offset-1">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+		<div class="col-sm-8 col-md-8 col-lg-2 col-lg-offset-1">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+		{% endif %}
+	  </div>
+	</div>
   </body>
 </html>
