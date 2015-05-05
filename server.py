@@ -61,7 +61,12 @@ def logout():
 @login_required
 def checkout():
     trans = Transaction.query.filter_by(user_id=g.user.username)
-    return render_template('checkout.html', cart = trans)
+    total = 0
+    for tran in trans:
+        prods = Product.query.filter_by(name=tran.product)
+        for prod in prods:
+		    total += prod.price
+    return render_template('checkout.html', cart = trans, total=total)
 	
 @app.route('/pay', methods=['GET','POST'])
 @login_required
@@ -75,11 +80,35 @@ def about():
 	
 @app.route('/games', methods=['GET','POST'])
 def games():
-    return render_template('games.html')
+    prods = Product.query.all()
+    return render_template('games.html', games = prods)
     
 @app.before_request
 def before_request():
     g.user = current_user
+
+@app.route('/atc', methods=['POST'])
+def add_to_cart():
+    print [request.form['game_to_add']]
+    for i in [request.form['game_to_add']]:
+	    name = i
+    tran = Transaction(name, g.user.username)
+    db.session.add(tran)
+    db.session.commit()
+    return redirect(url_for('games'))
+	
+@app.route('/rfc', methods=['POST'])
+def remove_from_cart():
+    trans = Transaction.query.filter_by(user_id=g.user.username)
+    for tran in trans:
+	    db.session.delete(tran)
+    db.session.commit()
+    return redirect(url_for('success'))
+	
+@app.route('/success')
+def success():
+    return render_template('success.html')
+	
 	
 class User(db.Model, UserMixin):
     __tablename__ = "users"
@@ -128,11 +157,13 @@ class Product(db.Model):
     __tablename__ = "products"
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(20))
-    price = db.Column(db.Integer)
+    price = db.Column(db.Float)
+    console = db.Column(db.String(20))
     
-    def __init__(self, name, price):
+    def __init__(self, name, price, console):
         self.name = name
         self.price = price
+        self.console = console
 
     def __repr__(self):
         return '<Product %r>' % (self.name)
@@ -140,53 +171,6 @@ class Product(db.Model):
 @app.route('/')
 def index():
 	return render_template("index.html")
- 
-@app.route('/', methods=['POST'])
-def postcodeReturn():
-  
-	client = foursquare.Foursquare(client_id='ILM2KRYYDZVPE3KVMLH1K34JQBKKBALXZL3C1ZGHKIRA23UP',client_secret='MUZXSHLAUP4FZWIHJYU5YBNVS52KPDOKOONTPBVZDP3ZDBGP')
-
-	pc = PostCoder()
-
-	houseN = request.form['houseNo'].strip()
-	postcode = request.form['post'].strip()
-	amenity = request.form['amenity'].strip()
-
-	result = pc.get(postcode)
-
-	lat = result['geo']['lat']
-	lng = result['geo']['lng']
-
-	ll = str(lat) + "," + str(lng)
-
-	params = {}
-	params['ll'] = ll
-   
-	if amenity != "":
-	
-		params['query'] = amenity
-	 
-	output = client.venues.search(params)
-
-	op = output['venues']
-
-	nameList = []
-	addressList = []
-
-	for venue in op:
-	
-		nameList.append(venue['name'].strip())
-		address = venue['location']['formattedAddress']
-		addressList.append(address)
-
-	nums = []
-   
-	for i in range(len(nameList)):
-	
-		nums.append(i)
-
-	return render_template('showAms.html', ams=nameList, adds=addressList, num=nums, postc = postcode, hn= houseN)  
-
 
 if __name__ == '__main__':
 	app.debug = True
