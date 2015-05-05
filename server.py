@@ -64,6 +64,13 @@ def checkout():
     trans = Transaction.query.all()
     return render_template('checkout.html', cart = trans)
 	
+@app.route('/pay', methods=['GET','POST'])
+@login_required
+def pay():
+    user = g.user
+    trans = Transaction.query.all()
+    return render_template('pay.html', cart = trans)
+	
 @app.route('/about')
 def about():
     return render_template('about.html')
