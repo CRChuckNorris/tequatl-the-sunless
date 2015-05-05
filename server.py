@@ -16,6 +16,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
+app.secret_key = 'gazeburndecay'
 db = SQLAlchemy(app)
 db.create_all()
 login_manager = LoginManager()
